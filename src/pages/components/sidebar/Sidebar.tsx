@@ -1,5 +1,8 @@
 //Sidebar.js
 import React, { useState } from 'react';
+import SearchBar from '../input/seacrchBar/SearchBar';
+import DropdownCategory from '../dropdown/DropdownCategory';
+import Link from 'next/link';
 
 const Sidebar = () => {
     // State to manage the open/close state of the sidebar
@@ -19,18 +22,18 @@ const Sidebar = () => {
                 {/* Sidebar content */}
                 <div className="flex flex-col items-center">
                     <div className="mt-4">
-                        <a href="#"
+                        <Link href="/home"
                             className="text-white 
                           hover:text-gray-300">
                             Home
-                        </a>
+                        </Link>
                     </div>
                     <div className="mt-4">
-                        <a href="#"
+                        <Link href="/about"
                             className="text-white 
                           hover:text-gray-300">
                             About
-                        </a>
+                        </Link>
                     </div>
                     {/* Add more sidebar items here */}
                 </div>
@@ -39,7 +42,7 @@ const Sidebar = () => {
             <div className={`flex-1 p-4 
                         ${isOpen ? 'ml-64' : 'ml-0'}`}>
                 {/* Button to toggle sidebar */}
-                <div className="ml-auto">
+                <div className="flex justify-between">
                     <button
                         className="bg-blue-500 hover:bg-blue-700 
                        text-white font-bold py-2 px-4 rounded"
@@ -71,6 +74,8 @@ const Sidebar = () => {
                             </svg>
                         )}
                     </button>
+                    <SearchBar />
+                    <DropdownCategory />
                 </div>
             </div>
         </div>
