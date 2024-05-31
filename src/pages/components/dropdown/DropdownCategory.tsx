@@ -5,7 +5,6 @@ export interface DropdownCategoryProps {
 }
 const DropdownCategory = (props: DropdownCategoryProps) => {
     return (
-        <div>
             <select name="" id="" className='px-5'>
                 <option value="ALL" defaultChecked>ALL</option>
                 <option value="HOME" >HOME</option>
@@ -17,7 +16,6 @@ const DropdownCategory = (props: DropdownCategoryProps) => {
                 <option value="HOME" >Social Media</option>
                 <option value="HOME" >Layout</option>
             </select>
-        </div>
     )
 }
 
