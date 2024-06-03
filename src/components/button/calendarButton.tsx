@@ -11,7 +11,6 @@ interface CalendarButtonProps {
   updatedYear: any; // function
 }
 const CalendarButton = (props: CalendarButtonProps) => {
-
   const [updateCalenderMonth, setUpdateCalenderMonth] = useState<number>(
     props.currentMonthNumber
   );
@@ -30,22 +29,21 @@ const CalendarButton = (props: CalendarButtonProps) => {
       setUpdateCalenderMonth(1);
       setUpdateCalenderYear(currenYear + 1);
       setUpdateDate(`${currenYear + 1}-${1}-01`);
+    } else if (props.position == "lessThan" && currenMonth !== 1) {
+      setUpdateCalenderMonth(currenMonth - 1);
+      setUpdateDate(`${currenYear}-${currenMonth - 1}-01`);
+    } else if (props.position == "lessThan" && currenMonth == 1) {
+      setUpdateCalenderMonth(12);
+      setUpdateCalenderYear(currenYear - 1);
+      setUpdateDate(`${currenYear - 1}-${12}-01`);
     }
-    else if (props.position == "lessThan" && currenMonth !== 1) {
-        setUpdateCalenderMonth(currenMonth - 1);
-        setUpdateDate(`${currenYear}-${currenMonth - 1}-01`);
-      } else if (props.position == "lessThan" && currenMonth == 12) {
-        setUpdateCalenderMonth(12);
-        setUpdateCalenderYear(currenYear - 1);
-        setUpdateDate(`${currenYear - 1}-${12}-01`);
-      }
   };
   useEffect(() => {
     // console.log("updateDate ---", updateDate);
 
     !!updateDate && props.newDate(updateDate);
     !!updateCalenderMonth && props.updatedMonth(updateCalenderMonth);
-    !!updateCalenderYear && props.updatedYear(updateCalenderYear)
+    !!updateCalenderYear && props.updatedYear(updateCalenderYear);
   }, [updateDate]);
   return (
     <button
