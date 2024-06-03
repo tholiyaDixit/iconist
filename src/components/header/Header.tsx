@@ -13,7 +13,7 @@ const Header = () => {
     const page: Header.allPage[] = [
         { pageName: 'Home', navigate: "/" },
         { pageName: 'About', navigate: "/about" },
-        { pageName: 'Calculator', navigate: "/calculator" },
+        { pageName: 'Calendar', navigate: "/calendar" },
     ]
 
     return (
