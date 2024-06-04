@@ -74,15 +74,13 @@ const calendar = () => {
               setNewYear(updateYear);
             }}
           />
-          <div className="text-lg">
-            {monthName}, {NewYear}
-          </div>
           <button
+           className="text-lg"
             onClick={() => {
               setUpdatedDate(`${currentYear}-${currentMonth}-01`);
             }}
           >
-            132
+             {monthName}, {NewYear}
           </button>
 
           <CalendarButton
