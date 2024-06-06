@@ -3,7 +3,7 @@ import useBreakPoint from "@/utils/useBreakPoint";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const Header = ({children}:any) => {
+const Header = ({ children }: any) => {
   const isMobile = useBreakPoint();
   const path = usePathname();
   console.log("path ---", path);
@@ -18,8 +18,8 @@ const Header = ({children}:any) => {
   ];
 
   useEffect(() => {
-    setIsOpen(false)
-  },[path])
+    setIsOpen(false);
+  }, [path]);
 
   return (
     <div>

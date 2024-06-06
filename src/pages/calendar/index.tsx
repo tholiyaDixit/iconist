@@ -51,9 +51,9 @@ const calendar = () => {
               <svg
                 className="w-4 h-4 stroke-current"
                 fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="4"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -88,9 +88,9 @@ const calendar = () => {
               <svg
                 className="w-4 h-4 stroke-current"
                 fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="4"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
