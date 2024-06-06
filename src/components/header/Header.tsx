@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import useBreakPoint from "@/utils/useBreakPoint";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import more from "../../images/application.png";
 
 const Header = ({ children }: any) => {
   const isMobile = useBreakPoint();
   const path = usePathname();
   console.log("path ---", path);
   // console.log("isMobile ---", isMobile);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [moreFunction, setMoreFunction] = useState<boolean>(false);
 
   // const page = ['Home', 'About', 'Calculator']
   const page: Header.allPage[] = [
@@ -17,9 +20,25 @@ const Header = ({ children }: any) => {
     { pageName: "Calendar", navigate: "/calendar" },
   ];
 
+  const morePage = [
+    { pageName: "Sign Up", navigate: "/signup" },
+    { pageName: "login", navigate: "/login" },
+    { pageName: "Account", navigate: "/Account" },
+  ];
+
   useEffect(() => {
     setIsOpen(false);
   }, [path]);
+  useEffect(() => {
+  //   document.body.addEventListener("click", function (evt) {
+  //     // console.dir(this);
+  //     //note evt.target can be a nested element, not the body element, resulting in misfires
+  //     // console.log(evt.target);
+  
+  //     // setMoreFunction(false)
+  // });
+  },[])
+  
 
   return (
     <div>
@@ -111,7 +130,36 @@ const Header = ({ children }: any) => {
               />
             </div>
             <div className="flex items-center pr-4">
-              <button className="flex items-center text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
+              <button
+                onClick={() => {
+                  setMoreFunction(!moreFunction);
+                }}
+              >
+                <Image
+                  // src="../../images/application.png"
+                  src={more}
+                  width={25}
+                  height={25}
+                  alt="loading"
+                />
+              </button>
+              <div className={!!moreFunction ? "absolute top-10 right-14 px-10 bg-white border rounded-lg" : ""}>
+                {!!moreFunction &&
+                  morePage.map((item: any, index) => {
+                    return (
+                      <div className="my-3" key={index}>
+                        <Link
+                          href={item.navigate}
+                          className=" hover:text-gray-300"
+                        >
+                          {item.pageName}
+                        </Link>
+                      </div>
+                    );
+                  })}
+              </div>
+
+              {/* <button className="flex items-center text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -126,12 +174,12 @@ const Header = ({ children }: any) => {
                     d="M12 19l-7-7 7-7m5 14l7-7-7-7"
                   />
                 </svg>
-              </button>
+              </button> */}
             </div>
           </div>
           <div className="p-4">
-            <h1 className="text-2xl font-bold">Welcome to Daystar Daycare </h1>
-            <p className="mt-2 text-gray-600">Raising tomorrow's leaders.</p>
+            {/* <h1 className="text-2xl font-bold">Welcome to Daystar Daycare </h1>
+            <p className="mt-2 text-gray-600">Raising tomorrow's leaders.</p> */}
             {children}
           </div>
         </div>
@@ -141,3 +189,10 @@ const Header = ({ children }: any) => {
 };
 
 export default Header;
+
+
+// position: absolute;
+//     top: 29px;
+//     right: 64px;
+//     padding: 0 50px;
+//     background-color: #c1bfbf;
