@@ -10,13 +10,15 @@ import {
 import moment from "moment";
 import { space } from "postcss/lib/list";
 import CalendarButton from "@/components/button/calendarButton";
+import Link from "next/link";
+import CalendarFormPopup from "@/popup/calendarFormPoup/CalendarFormPopup";
 
 const calendar = () => {
   // const monthDay = getMonthDay();
   // const currentWeekName = getCurrentWeekName();
   // const currentDay = getCurrentDay();
   const StartMonthWeekNumber = getStartMonthWeekNumber("2024-06-01");
-  const currentDate = moment().format("YYYY-MM-DD");
+  const currentDate = moment().format("D");
   const currentMonth = moment().format("MM");
   const currentYear = moment().format("YYYY");
   const [updatedDate, setUpdatedDate] = useState(
@@ -24,6 +26,7 @@ const calendar = () => {
   );
   const [newMonth, setNewMonth] = useState(currentMonth);
   const [NewYear, setNewYear] = useState(currentYear);
+  const [model, setModel] = useState<boolean>(false);
   const TotalMonthDay = getTotalMonthDayArray(updatedDate);
   const monthName = getMonthName(updatedDate);
 
@@ -37,7 +40,7 @@ const calendar = () => {
     "Sat",
   ];
   // let a = moment(newDate).day()
-  console.log("mmmmmm ---", updatedDate);
+  console.log("mmmmmm ---", currentDate);
 
   return (
     <>
@@ -75,12 +78,12 @@ const calendar = () => {
             }}
           />
           <button
-           className="text-lg"
+            className="text-lg"
             onClick={() => {
               setUpdatedDate(`${currentYear}-${currentMonth}-01`);
             }}
           >
-             {monthName}, {NewYear}
+            {monthName}, {NewYear}
           </button>
 
           <CalendarButton
@@ -122,17 +125,33 @@ const calendar = () => {
           })}
           {TotalMonthDay.map((item: any, index: number) => {
             return (
-              <a
-                href="#"
-                className="hover:bg-indigo-100 rounded-md p-2"
+              <button
+                // href="#"
                 key={index}
+                className={
+                  currentDate == item
+                    ? "bg-indigo-300 rounded-md p-2"
+                    : "hover:bg-indigo-100 rounded-md p-2"
+                }
+                onClick={() => {
+                  setModel(true);
+                }}
               >
                 {item == 0 ? "" : item}
-              </a>
+              </button>
             );
           })}
         </div>
       </div>
+      {/* {!!model && <div className="modal-body"><CalendarFormPopup /></div>} */}
+      {!!model && (
+        <CalendarFormPopup
+          model={model}
+          closeModel={() => {
+            setModel(false);
+          }}
+        />
+      )}
     </>
   );
 };
