@@ -125,8 +125,8 @@ const calendar = () => {
           })}
           {TotalMonthDay.map((item: any, index: number) => {
             return (
-              <button
-                // href="#"
+              <Link
+                href={`calendar/${updatedDate}`}
                 key={index}
                 className={
                   currentDate == item
@@ -136,9 +136,10 @@ const calendar = () => {
                 onDoubleClick={() => {
                   setModel(true);
                 }}
+                onClick={() => {}}
               >
                 {item == 0 ? "" : item}
-              </button>
+              </Link>
             );
           })}
         </div>
