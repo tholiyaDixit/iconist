@@ -133,7 +133,7 @@ const calendar = () => {
                     ? "bg-indigo-300 rounded-md p-2"
                     : "hover:bg-indigo-100 rounded-md p-2"
                 }
-                onClick={() => {
+                onDoubleClick={() => {
                   setModel(true);
                 }}
               >
