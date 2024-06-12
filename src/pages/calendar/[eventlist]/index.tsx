@@ -1,3 +1,4 @@
+import EventCard from '@/components/eventCard/EventCard';
 import { useRouter } from 'next/router'
 import React from 'react'
 
@@ -8,6 +9,7 @@ const EventList = () => {
   return (
     <div>
       <h3>Page Event</h3>
+      <EventCard />
     </div>
   )
 }
