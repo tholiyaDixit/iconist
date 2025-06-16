@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mobile reCAPTCHA</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+      function onSubmit(token) {
+        window.ReactNativeWebView?.postMessage(token);
+      }
+      function executeCaptcha() {
+        grecaptcha.execute();
+      }
+    </script>
+  </head>
+  <body>
+    <div
+      class="g-recaptcha"
+      data-sitekey="YOUR_SITE_KEY"
+      data-callback="onSubmit"
+      data-size="invisible"
+    ></div>
+    <button onclick="executeCaptcha()">Start CAPTCHA</button>
+  </body>
+</html>
