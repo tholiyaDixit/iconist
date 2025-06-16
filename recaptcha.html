@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Mobile reCAPTCHA</title>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <meta charset="UTF-8" />
+    <script src="https://www.google.com/recaptcha/api.js?onload=onLoad&render=explicit" async defer></script>
     <script>
+      function onLoad() {
+        window.recaptchaWidgetId = grecaptcha.render('recaptcha-container', {
+          sitekey: 'YOUR_SITE_KEY',
+          size: 'invisible',
+          callback: onSubmit,
+        });
+      }
+
       function onSubmit(token) {
         window.ReactNativeWebView?.postMessage(token);
       }
-      function executeCaptcha() {
-        grecaptcha.execute();
+
+      function triggerCaptcha() {
+        grecaptcha.execute(window.recaptchaWidgetId);
       }
     </script>
   </head>
   <body>
-    <div
-      class="g-recaptcha"
-      data-sitekey="YOUR_SITE_KEY"
-      data-callback="onSubmit"
-      data-size="invisible"
-    ></div>
-    <button onclick="executeCaptcha()">Start CAPTCHA</button>
+    <div id="recaptcha-container"></div>
+    <button onclick="triggerCaptcha()">Trigger CAPTCHA</button>
   </body>
 </html>
